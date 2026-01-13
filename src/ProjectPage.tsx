@@ -247,25 +247,25 @@ export function ProjectPage() {
         </div>
 
         {/* Planning Form */}
-        <div className="mb-6">
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+        <div className="mb-6 animate-fade-in stagger-4">
+          <div className="terminal-border bg-panel-surface p-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-command-bg border border-circuit-line flex items-center justify-center">
+                <svg className="w-6 h-6 text-electric-blue" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
                   <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">Plan Your Project</h2>
-                <p className="text-sm text-gray-400">Describe what you want to build</p>
+                <h2 className="text-xl font-bold text-white mb-1 font-sans">Plan Your Project</h2>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">AI-Powered_PRD_Generator</p>
               </div>
             </div>
 
             <form onSubmit={handlePlan} className="space-y-4">
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">
-                  Project Description
+                <label htmlFor="description" className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 font-mono">
+                  Project_Description
                 </label>
                 <textarea
                   id="description"
@@ -273,26 +273,26 @@ export function ProjectPage() {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Example: A simple todo app with a clean UI, user authentication, and the ability to organize tasks into categories..."
                   rows={6}
-                  className="w-full px-4 py-3 bg-dark-bg border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+                  className="w-full px-4 py-3 bg-command-bg border border-circuit-line text-white placeholder-gray-600 focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all disabled:opacity-50 disabled:cursor-not-allowed resize-none font-mono text-sm"
                   disabled={isPlanning}
                 />
-                <p className="mt-2 text-xs text-gray-500">
-                  Be specific about features, design preferences, and technical requirements
+                <p className="mt-3 text-xs text-gray-500 font-mono">
+                  <span className="text-electric-blue">$</span> Specify features, design preferences, and technical requirements
                 </p>
               </div>
               
               <button
                 type="submit"
                 disabled={isPlanning || !description.trim()}
-                className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3.5 px-6 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-dark-card disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 disabled:shadow-none"
+                className="w-full bg-electric-blue hover:bg-blue-400 text-neural-black py-4 px-6 font-mono font-bold text-sm uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-electric-blue focus:ring-offset-2 focus:ring-offset-panel-surface disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed transition-all shadow-lg shadow-electric-blue/30 hover:shadow-electric-blue/50 disabled:shadow-none"
               >
                 {isPlanning ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <span className="flex items-center justify-center gap-3">
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Planning...
+                    Processing...
                   </span>
                 ) : (
                   "Generate Plan →"
@@ -302,28 +302,30 @@ export function ProjectPage() {
 
             {/* Show terminal output during planning */}
             {isPlanning && (
-              <div className="mt-6 pt-6 border-t border-gray-800">
-                <div className="flex items-center space-x-2 mb-3">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                  <h3 className="text-sm font-semibold text-purple-400">{planStatus || "Processing..."}</h3>
+              <div className="mt-6 pt-6 border-t border-circuit-line">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 bg-electric-blue rounded-full animate-pulse"></div>
+                  <h3 className="text-[10px] font-bold text-electric-blue uppercase tracking-widest font-mono">{planStatus || "Processing..."}</h3>
                 </div>
                 {terminalOutput.length > 0 && (
-                  <div 
-                    className="bg-dark-bg border border-gray-800 rounded-lg p-4 max-h-96 overflow-y-auto font-mono text-sm"
-                    dangerouslySetInnerHTML={{ 
-                      __html: ansiConverter.toHtml(terminalOutput.join(''))
-                    }}
-                    style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}
-                  />
+                  <div className="terminal-border bg-command-bg">
+                    <div 
+                      className="p-4 max-h-96 overflow-y-auto font-mono text-sm"
+                      dangerouslySetInnerHTML={{ 
+                        __html: ansiConverter.toHtml(terminalOutput.join(''))
+                      }}
+                      style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}
+                    />
+                  </div>
                 )}
               </div>
             )}
             
             {/* Show PRD if available */}
             {state?.prd && (
-              <div className="mt-6 pt-6 border-t border-gray-800">
-                <h3 className="text-sm font-semibold text-gray-300 mb-3">Generated PRD</h3>
-                <div className="bg-dark-bg border border-gray-800 rounded-lg p-4 max-h-96 overflow-y-auto">
+              <div className="mt-6 pt-6 border-t border-circuit-line">
+                <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 font-mono">Generated_PRD</h3>
+                <div className="terminal-border bg-command-bg p-4 max-h-96 overflow-y-auto">
                   <pre className="text-sm text-gray-300 whitespace-pre-wrap font-mono">{state.prd}</pre>
                 </div>
               </div>
@@ -360,32 +362,32 @@ export function ProjectPage() {
         </div>
 
         {/* OpenCode Config Editor */}
-        <div className="mb-6">
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
+        <div className="mb-6 animate-fade-in stagger-5">
+          <div className="terminal-border bg-panel-surface p-6">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-command-bg border border-circuit-line flex items-center justify-center">
+                  <svg className="w-6 h-6 text-cf-orange" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"/>
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-white">OpenCode Configuration</h2>
-                  <p className="text-xs text-gray-400">View and edit your opencode.json</p>
+                  <h2 className="text-xl font-bold text-white mb-1 font-sans">OpenCode Configuration</h2>
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">Config_Editor</p>
                 </div>
               </div>
               {!isEditingConfig && (
                 <button
                   onClick={handleEditConfig}
-                  className="px-4 py-2 text-sm font-medium text-blue-400 hover:text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-lg transition-all"
+                  className="px-4 py-2 text-xs font-bold font-mono uppercase tracking-wider text-cf-orange hover:text-orange-400 bg-cf-orange/10 hover:bg-cf-orange/20 border border-cf-orange/20 transition-all"
                 >
-                  Edit Config
+                  Edit
                 </button>
               )}
             </div>
 
             {!isEditingConfig ? (
-              <div className="bg-dark-bg border border-gray-800 rounded-lg p-4 max-h-96 overflow-y-auto">
+              <div className="terminal-border bg-command-bg p-4 max-h-96 overflow-y-auto">
                 <pre className="text-sm text-gray-300 whitespace-pre-wrap font-mono">
                   {state?.opencodeConfigJson ? JSON.stringify(JSON.parse(state.opencodeConfigJson), null, 2) : "No config available"}
                 </pre>
@@ -396,31 +398,31 @@ export function ProjectPage() {
                   value={configJson}
                   onChange={(e) => setConfigJson(e.target.value)}
                   rows={15}
-                  className="w-full px-4 py-3 bg-dark-bg border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-sm"
+                  className="w-full px-4 py-3 bg-command-bg border border-circuit-line text-white placeholder-gray-600 focus:outline-none focus:border-cf-orange focus:ring-1 focus:ring-cf-orange transition-all font-mono text-sm"
                   placeholder="Paste your opencode.json here..."
                 />
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center gap-3">
                   <button
                     onClick={handleSaveConfig}
                     disabled={isSavingConfig || !configJson.trim()}
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2.5 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-dark-card disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed transition-all"
+                    className="flex-1 bg-cf-orange hover:bg-orange-600 text-white py-3 px-6 font-mono font-bold text-xs uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-cf-orange focus:ring-offset-2 focus:ring-offset-panel-surface disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed transition-all shadow-lg shadow-cf-orange/30 hover:shadow-cf-orange/50 disabled:shadow-none"
                   >
                     {isSavingConfig ? (
-                      <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
                         Saving...
                       </span>
                     ) : (
-                      "Save & Write to Sandbox"
+                      "Save & Write →"
                     )}
                   </button>
                   <button
                     onClick={() => setIsEditingConfig(false)}
                     disabled={isSavingConfig}
-                    className="px-4 py-2.5 text-sm font-medium text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg transition-all disabled:opacity-50"
+                    className="px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-gray-400 hover:text-white bg-command-bg hover:bg-elevated-surface border border-circuit-line transition-all disabled:opacity-50"
                   >
                     Cancel
                   </button>
@@ -431,78 +433,85 @@ export function ProjectPage() {
         </div>
 
         {/* Debug Section */}
-        <div className="mb-6">
-          <div className="bg-dark-card border border-yellow-800/50 rounded-lg p-6">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-yellow-500/10 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+        <div className="mb-6 animate-fade-in stagger-6">
+          <div className="terminal-border bg-panel-surface p-6 border-terminal-green/20">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-command-bg border border-terminal-green/30 flex items-center justify-center">
+                <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
                 </svg>
               </div>
               <div>
-                <h2 className="text-lg font-bold text-white">Debug Controls</h2>
-                <p className="text-xs text-gray-400">Development tools for testing</p>
+                <h2 className="text-xl font-bold text-white mb-1 font-sans">Debug Controls</h2>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">Dev_Tools</p>
               </div>
             </div>
 
             <button
               onClick={handleInitializeSandbox}
               disabled={isInitializing}
-              className="w-full flex items-center justify-between px-4 py-3 bg-dark-bg hover:bg-gray-800 border border-gray-800 hover:border-yellow-700 rounded-lg transition-all group disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full terminal-border bg-command-bg hover:bg-elevated-surface px-4 py-3 transition-all group disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
-                </svg>
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white">
-                  {isInitializing ? "Initializing Sandbox..." : "Initialize Sandbox"}
-                </span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-terminal-green" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
+                  </svg>
+                  <span className="text-sm font-mono font-bold text-white group-hover:text-terminal-green transition-colors">
+                    {isInitializing ? "Initializing Sandbox..." : "Initialize Sandbox"}
+                  </span>
+                </div>
+                {!isInitializing && (
+                  <svg className="w-4 h-4 text-gray-600 group-hover:text-terminal-green group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                )}
               </div>
-              {!isInitializing && (
-                <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              )}
             </button>
 
             {/* Example Terminal Output */}
             <div className="mt-4">
-              <p className="text-xs text-gray-500 mb-2">Example Terminal Output:</p>
-              <div 
-                className="bg-dark-bg border border-gray-800 rounded-lg p-4 overflow-auto font-mono text-sm max-h-40"
-                dangerouslySetInnerHTML={{ 
-                  __html: new AnsiToHtml({ fg: '#fff', bg: '#0f0f0f', newline: true, escapeXML: true }).toHtml("\x1B[94m\x1B[1m| \x1B[0m\x1B[90m cloudflare-developer-documentation_search_cloudflare_documentation  \x1B[0m{\"query\":\"Durable Objects getting started\"}")
-                }}
-                style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}
-              />
+              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3 font-mono">Example_Output:</p>
+              <div className="terminal-border bg-command-bg p-4 overflow-auto max-h-40">
+                <div 
+                  className="font-mono text-sm"
+                  dangerouslySetInnerHTML={{ 
+                    __html: new AnsiToHtml({ fg: '#fff', bg: '#0f0f0f', newline: true, escapeXML: true }).toHtml("\x1B[94m\x1B[1m| \x1B[0m\x1B[90m cloudflare-developer-documentation_search_cloudflare_documentation  \x1B[0m{\"query\":\"Durable Objects getting started\"}")
+                  }}
+                  style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}
+                />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Details Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Configuration */}
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+          <div className="terminal-border bg-panel-surface p-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-command-bg border border-circuit-line flex items-center justify-center">
+                <svg className="w-6 h-6 text-cf-orange" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-white">Configuration</h2>
+              <div>
+                <h2 className="text-xl font-bold text-white mb-1 font-sans">Configuration</h2>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">System_Settings</p>
+              </div>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center justify-between py-3 border-b border-gray-800">
-                <span className="text-sm text-gray-400">OpenCode Config</span>
-                <span className="text-sm font-medium text-white">Active</span>
+              <div className="flex items-center justify-between py-3 border-b border-circuit-line">
+                <span className="text-xs font-mono uppercase tracking-wider text-gray-500">OpenCode_Config</span>
+                <span className="text-sm font-bold text-terminal-green font-mono">Active</span>
               </div>
-              <div className="flex items-center justify-between py-3 border-b border-gray-800">
-                <span className="text-sm text-gray-400">Agent Type</span>
-                <span className="text-sm font-medium text-white font-mono">Project</span>
+              <div className="flex items-center justify-between py-3 border-b border-circuit-line">
+                <span className="text-xs font-mono uppercase tracking-wider text-gray-500">Agent_Type</span>
+                <span className="text-sm font-bold text-white font-mono">Project</span>
               </div>
               <div className="flex items-center justify-between py-3">
-                <span className="text-sm text-gray-400">State Sync</span>
-                <span className="inline-flex items-center px-2.5 py-0.5 bg-green-500/10 text-green-500 text-xs font-medium rounded-full border border-green-500/20">
+                <span className="text-xs font-mono uppercase tracking-wider text-gray-500">State_Sync</span>
+                <span className="px-2 py-1 bg-terminal-green/10 text-terminal-green border border-terminal-green/20 font-mono text-[10px] uppercase tracking-wider">
                   Enabled
                 </span>
               </div>
@@ -510,34 +519,43 @@ export function ProjectPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+          <div className="terminal-border bg-panel-surface p-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-command-bg border border-circuit-line flex items-center justify-center">
+                <svg className="w-6 h-6 text-electric-blue" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
                   <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-white">Quick Actions</h2>
+              <div>
+                <h2 className="text-xl font-bold text-white mb-1 font-sans">Quick Actions</h2>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">Shortcuts</p>
+              </div>
             </div>
             <div className="space-y-3">
-              <button className="w-full flex items-center justify-between px-4 py-3 bg-dark-bg hover:bg-gray-800 border border-gray-800 hover:border-gray-700 rounded-lg transition-all group">
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white">Edit Configuration</span>
-                <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+              <button className="w-full terminal-border bg-command-bg hover:bg-elevated-surface px-4 py-3 transition-all group">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-mono font-bold text-white group-hover:text-cf-orange transition-colors">Edit Configuration</span>
+                  <svg className="w-4 h-4 text-gray-600 group-hover:text-cf-orange group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </button>
-              <button className="w-full flex items-center justify-between px-4 py-3 bg-dark-bg hover:bg-gray-800 border border-gray-800 hover:border-gray-700 rounded-lg transition-all group">
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white">Manage Skills</span>
-                <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+              <button className="w-full terminal-border bg-command-bg hover:bg-elevated-surface px-4 py-3 transition-all group">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-mono font-bold text-white group-hover:text-cf-orange transition-colors">Manage Skills</span>
+                  <svg className="w-4 h-4 text-gray-600 group-hover:text-cf-orange group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </button>
-              <button className="w-full flex items-center justify-between px-4 py-3 bg-dark-bg hover:bg-gray-800 border border-gray-800 hover:border-gray-700 rounded-lg transition-all group">
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white">View Logs</span>
-                <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+              <button className="w-full terminal-border bg-command-bg hover:bg-elevated-surface px-4 py-3 transition-all group">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-mono font-bold text-white group-hover:text-cf-orange transition-colors">View Logs</span>
+                  <svg className="w-4 h-4 text-gray-600 group-hover:text-cf-orange group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </button>
             </div>
           </div>

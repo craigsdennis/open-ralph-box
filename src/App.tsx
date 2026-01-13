@@ -1,19 +1,17 @@
-import { useState } from "react";
-import { useAgent } from "agents/react";
-import type { Hub, HubState } from "../worker/agents/hub";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "./HomePage";
+import { ProjectPage } from "./ProjectPage";
 import "./App.css";
 
 function App() {
-  const [recentProjects, setRecentProjects] = useState([]);
-  const agent = useAgent<Hub, HubState>({
-    agent: "hub",
-    onStateUpdate(state) {
-      setRecentProjects(state.recentProjects);
-    } 
-  })
-  return <>
-  There are {recentProjects.length} projects
-  </>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects/:name" element={<ProjectPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

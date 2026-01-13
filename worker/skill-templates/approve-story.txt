@@ -1,0 +1,20 @@
+---
+name: approve-story
+description: Ensures that a story can be considered complete
+license: MIT
+compatibility: opencode
+---
+
+# What I do
+
+- You will be asked to verify that a specific user story from stories.json has been completed.
+- Review the user story and the PRD which can be found in prd.json
+- There will be a changelog entry in the changelogs directory and it should contain instructions on how to test.
+- Ensure that the code is using best practices
+  - The current date can be found by using `bash -c "date"`
+- You will modify the changelog in the changelogs with your approval
+- Update the story to approved.
+
+# When to use me
+
+When there is a story to that needs approval

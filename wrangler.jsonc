@@ -21,12 +21,25 @@
         "name": "Project",
       },
       { "class_name": "Hub", "name": "Hub" },
+
+      {
+        "class_name": "Sandbox",
+        "name": "Sandbox",
+      },
     ],
   },
   "migrations": [
     {
       "tag": "v1",
-      "new_sqlite_classes": ["Project", "Hub"],
+      "new_sqlite_classes": ["Project", "Hub", "Sandbox"],
+    },
+  ],
+  "containers": [
+    {
+      "class_name": "Sandbox",
+      "image": "./Dockerfile",
+      "instance_type": "lite",
+      "max_instances": 1,
     },
   ],
   /**

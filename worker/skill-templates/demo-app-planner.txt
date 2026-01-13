@@ -1,0 +1,19 @@
+---
+name: demo-app-planner
+description: Builds a product requirements document, PRD, and user stories for an educational demo application based on a request
+license: MIT
+compatibility: opencode
+---
+
+## What I do
+
+- Use most current knowledge to build a product requirements document, PRD, for an educational demo application. 
+  - Stores that PRD in a file in markdown format named prd.md
+- Builds a list of user stories based on the PRD
+  - User stories are saved to stories.json 
+  - User story follows the format in examples/stories.json
+
+
+## When to use me
+
+Use this when you are missing ./prd.md or ./stories.json and a demo app is asked to be built

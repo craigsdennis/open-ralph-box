@@ -4,6 +4,8 @@ import { Project } from './agents/project';
 import { agentsMiddleware } from 'hono-agents';
 
 export {Hub, Project};
+export {Sandbox} from "@cloudflare/sandbox";
+
 
 const app = new Hono<{ Bindings: Env }>();
 

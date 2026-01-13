@@ -1,0 +1,37 @@
+---
+name: implement-story
+description: Enters a sprint chooses an appropriate story, builds the story
+license: MIT
+compatibility: opencode
+---
+
+## What I do
+
+- Refresh your knowledge with the PRD found in prd.md and the User Stories found in stories.json
+- There are also changelogs available in the changelogs directory.
+- A file called struggles.md exists that keeps track of problems that happened from other builders. 
+  - If you run into a struggle create or update this file with the date and feedback on what can be done better.
+  - Use this file to help others improve and not run into the same issue you did.
+- Choose the next appropriate story in the backlog.
+  -  Change the status to "in-progress". 
+     -  Only update the status, do not change other values.
+-  Ensure you have current best practices on how to build the tasks
+  - To get the current date run `bash -c "date"`
+  - Always use the latest version of software that you install or setup
+-  Create a plan that will fulfill the story and meet the acceptance criteria
+-  Create and switch to a new GitHub branch with the name of the story
+-  Build the story to meet the acceptance criteria of the story. Only attempt this story.
+   -  Add relevant tests using the best practices for testing your software.
+-  Log your work in changelogs/<STORY-IDENTIFIER>.md
+   -  Include in the changelog how to ensure how each of the accceptance criteria can be tested or demonstrated for review.
+-  Once you believe you are complete, change the status to "needs-review".
+   -  Use the approve-story skill to get your required approval.
+   -  Implement your changes and try to reach approval.
+-  Commit the code with a solid description and mention the user story in the title. 
+-  Update AGENTS.md (or create it if it doesn't exist)
+   -  Remember to update struggles.md with anything specific issues you encountered while building
+-  Commit your changes, and merge them into the `main` branch
+
+## When to use me
+
+When asked to complete a story, or continue development on the project

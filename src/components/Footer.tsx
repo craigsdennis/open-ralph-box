@@ -28,10 +28,9 @@ export function Footer() {
               href="https://github.com/craigsdennis" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-1 hover:text-gray-400 transition-colors"
+              className="hover:text-gray-400 transition-colors"
             >
-              <span>👀</span>
-              <span>the code</span>
+              👀 the code
             </a>
           </p>
         </div>

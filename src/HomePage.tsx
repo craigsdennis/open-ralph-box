@@ -32,10 +32,10 @@ export function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-dark-bg">
       {/* Hero Section */}
-      <div className="flex-1 flex items-center justify-center px-6 py-16">
-        <div className="max-w-4xl w-full">
+      <div className="flex-1 flex items-center px-6 py-16">
+        <div className="max-w-4xl w-full mx-auto">
           {/* Main Heading */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl shadow-2xl shadow-orange-500/50">

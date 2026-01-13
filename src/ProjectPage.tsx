@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAgent } from "agents/react";
 import type { Project, ProjectState } from "../worker/agents/project";
+import { Footer } from "./components/Footer";
 // @ts-ignore - no types available
 import AnsiToHtml from 'ansi-to-html';
 
@@ -126,7 +127,7 @@ export function ProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg">
+    <div className="min-h-screen bg-dark-bg flex flex-col">
       {/* Navigation Bar */}
       <nav className="border-b border-gray-800 sticky top-0 z-10 bg-dark-bg/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -159,58 +160,58 @@ export function ProjectPage() {
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="flex-1 max-w-7xl w-full mx-auto px-6 py-12">
         {/* Project Header */}
-        <div className="mb-12">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="mb-8">
+          <div className="flex items-center space-x-3 mb-3">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-xs text-gray-500 uppercase tracking-wider">Active</span>
+              <span className="text-xs text-gray-500 uppercase tracking-wider font-medium">Active</span>
             </div>
           </div>
-          <h1 className="text-5xl font-bold text-white mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
             {state?.displayName || name}
           </h1>
-          <div className="flex items-center space-x-4">
-            <p className="text-gray-400 font-mono text-sm">
+          <div className="flex items-center space-x-3 text-sm">
+            <p className="text-gray-400 font-mono">
               {name}
             </p>
-            <span className="text-gray-600">•</span>
-            <p className="text-gray-500 text-sm">
+            <span className="text-gray-700">•</span>
+            <p className="text-gray-500">
               Agent Project
             </p>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {/* Display Name Card */}
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-5 hover:border-gray-700 transition-all group">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                 Display Name
               </h3>
-              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-500 transition-colors" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
             </div>
-            <p className="text-2xl font-bold text-white">
+            <p className="text-xl font-bold text-white truncate">
               {state?.displayName || "Not set"}
             </p>
           </div>
 
           {/* Skills Card */}
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-6 hover:border-orange-800/50 transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-5 hover:border-orange-800/50 transition-all group">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                 Skills
               </h3>
-              <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 text-orange-500 group-hover:text-orange-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
             </div>
             <div className="flex items-baseline">
-              <p className="text-4xl font-bold text-orange-500">
+              <p className="text-3xl font-bold text-orange-500">
                 {state?.skills ? Object.keys(state.skills).length : 0}
               </p>
               <p className="text-gray-500 text-sm font-medium ml-2">
@@ -220,32 +221,32 @@ export function ProjectPage() {
           </div>
 
           {/* Status Card */}
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-6 hover:border-green-800/50 transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-5 hover:border-green-800/50 transition-all group">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                 Status
               </h3>
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
               </div>
             </div>
-            <div className="flex items-center space-x-2 mb-1">
-              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center space-x-2">
+              <svg className="w-5 h-5 text-green-500 group-hover:text-green-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-xl font-bold text-green-500">Online</span>
+              <div>
+                <span className="text-xl font-bold text-green-500 block leading-none">Online</span>
+                <span className="text-gray-500 text-xs">Agent ready</span>
+              </div>
             </div>
-            <p className="text-gray-500 text-sm">
-              Agent ready
-            </p>
           </div>
         </div>
 
         {/* Planning Form */}
-        <div className="mb-8">
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-8">
+        <div className="mb-6">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
                 <svg className="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
@@ -339,8 +340,8 @@ export function ProjectPage() {
         </div>
 
         {/* OpenCode Config Editor */}
-        <div className="mb-8">
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-6">
+        <div className="mb-6">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
@@ -410,8 +411,8 @@ export function ProjectPage() {
         </div>
 
         {/* Debug Section */}
-        <div className="mb-8">
-          <div className="bg-dark-card border border-yellow-800/50 rounded-xl p-6">
+        <div className="mb-6">
+          <div className="bg-dark-card border border-yellow-800/50 rounded-lg p-6">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 bg-yellow-500/10 rounded-lg flex items-center justify-center">
                 <svg className="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
@@ -459,9 +460,9 @@ export function ProjectPage() {
         </div>
 
         {/* Details Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Configuration */}
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-6">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center">
                 <svg className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
@@ -489,7 +490,7 @@ export function ProjectPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-dark-card border border-gray-800 rounded-xl p-6">
+          <div className="bg-dark-card border border-gray-800 rounded-lg p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
                 <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
@@ -522,6 +523,8 @@ export function ProjectPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAgent } from "agents/react";
 import type { Hub, HubState } from "../worker/agents/hub";
+import { Footer } from "./components/Footer";
 
 export function HomePage() {
   const [projectName, setProjectName] = useState("");
@@ -133,22 +134,7 @@ export function HomePage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-800 py-6">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-sm text-gray-500">
-            Powered by{" "}
-            <a 
-              href="https://workers.cloudflare.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-orange-500 hover:text-orange-400 transition-colors"
-            >
-              Cloudflare Agents SDK
-            </a>
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

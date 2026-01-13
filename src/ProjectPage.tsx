@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAgent } from "agents/react";
 import type { Project, ProjectState } from "../worker/agents/project";
 import { Footer } from "./components/Footer";
+import { StoryCard } from "./components/StoryCard";
 // @ts-ignore - no types available
 import AnsiToHtml from 'ansi-to-html';
 
@@ -127,118 +128,119 @@ export function ProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col">
+    <div className="min-h-screen bg-neural-black flex flex-col relative">
       {/* Navigation Bar */}
-      <nav className="border-b border-gray-800 sticky top-0 z-10 bg-dark-bg/95 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <nav className="border-b border-circuit-line sticky top-0 z-10 bg-command-bg/95 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <button
               onClick={() => navigate("/")}
               className="flex items-center space-x-3 group"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-all">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-9 h-9 bg-cf-orange rounded flex items-center justify-center animate-pulse-glow">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
                 </svg>
               </div>
               <div className="text-left">
-                <h1 className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">Open Ralph Box</h1>
-                <p className="text-xs text-gray-500">Agent Dashboard</p>
+                <h1 className="text-sm font-bold text-white group-hover:text-cf-orange transition-colors font-mono tracking-tight">OPEN_RALPH_BOX</h1>
+                <p className="text-[10px] text-gray-500 font-mono">NEURAL_CMD_CENTER</p>
               </div>
             </button>
             <button
               onClick={() => navigate("/")}
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-400 hover:text-white bg-dark-card hover:bg-gray-800 border border-gray-800 rounded-lg transition-all"
+              className="flex items-center space-x-2 px-3 py-1.5 text-xs font-mono font-semibold text-gray-400 hover:text-white bg-panel-surface hover:bg-elevated-surface border border-circuit-line rounded transition-all"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              <span>Back</span>
+              <span>BACK</span>
             </button>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="flex-1 max-w-7xl w-full mx-auto px-6 py-12">
-        {/* Project Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-3">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-xs text-gray-500 uppercase tracking-wider font-medium">Active</span>
+      <div className="flex-1 max-w-7xl w-full mx-auto px-6 py-8 relative z-10">
+        {/* Project Header with Circuit Decoration */}
+        <div className="mb-8 circuit-decoration pl-6 animate-fade-in">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-terminal-green rounded-full animate-pulse"></div>
+              <span className="text-[10px] text-terminal-green uppercase tracking-widest font-mono font-bold">SYSTEM_ACTIVE</span>
             </div>
+            <div className="h-px flex-1 bg-gradient-to-r from-circuit-line to-transparent"></div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 font-sans tracking-tight">
             {state?.displayName || name}
           </h1>
-          <div className="flex items-center space-x-3 text-sm">
-            <p className="text-gray-400 font-mono">
+          <div className="flex items-center gap-4 text-sm">
+            <p className="text-cf-orange font-mono font-semibold">
               {name}
             </p>
-            <span className="text-gray-700">•</span>
-            <p className="text-gray-500">
-              Agent Project
+            <span className="text-gray-700">|</span>
+            <p className="text-gray-500 font-mono text-xs uppercase tracking-wider">
+              AGENT_PROJECT
             </p>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {/* Display Name Card */}
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-5 hover:border-gray-700 transition-all group">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                Display Name
+          <div className="terminal-border bg-panel-surface p-4 hover:bg-elevated-surface transition-all group animate-fade-in stagger-1">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest font-mono">
+                DISPLAY_NAME
               </h3>
-              <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-500 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-3.5 h-3.5 text-gray-600 group-hover:text-gray-500 transition-colors" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
             </div>
-            <p className="text-xl font-bold text-white truncate">
+            <p className="text-lg font-bold text-white truncate font-sans">
               {state?.displayName || "Not set"}
             </p>
           </div>
 
           {/* Skills Card */}
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-5 hover:border-orange-800/50 transition-all group">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                Skills
+          <div className="terminal-border bg-panel-surface p-4 hover:bg-elevated-surface transition-all group animate-fade-in stagger-2">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest font-mono">
+                SKILLS_LOADED
               </h3>
-              <svg className="w-4 h-4 text-orange-500 group-hover:text-orange-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-3.5 h-3.5 text-cf-orange group-hover:text-orange-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
             </div>
-            <div className="flex items-baseline">
-              <p className="text-3xl font-bold text-orange-500">
+            <div className="flex items-baseline gap-2">
+              <p className="text-2xl font-bold text-cf-orange font-mono">
                 {state?.skills ? Object.keys(state.skills).length : 0}
               </p>
-              <p className="text-gray-500 text-sm font-medium ml-2">
-                configured
+              <p className="text-gray-500 text-xs font-mono uppercase tracking-wider">
+                ACTIVE
               </p>
             </div>
           </div>
 
           {/* Status Card */}
-          <div className="bg-dark-card border border-gray-800 rounded-lg p-5 hover:border-green-800/50 transition-all group">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                Status
+          <div className="terminal-border bg-panel-surface p-4 hover:bg-elevated-surface transition-all group animate-fade-in stagger-3">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest font-mono">
+                CONNECTION
               </h3>
               <div className="flex items-center space-x-1">
-                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+                <div className="w-1 h-1 bg-terminal-green rounded-full animate-pulse"></div>
+                <div className="w-1 h-1 bg-terminal-green rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+                <div className="w-1 h-1 bg-terminal-green rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-green-500 group-hover:text-green-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-terminal-green group-hover:text-green-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <div>
-                <span className="text-xl font-bold text-green-500 block leading-none">Online</span>
-                <span className="text-gray-500 text-xs">Agent ready</span>
+                <span className="text-lg font-bold text-terminal-green block leading-none font-mono">ONLINE</span>
+                <span className="text-gray-500 text-[10px] font-mono uppercase tracking-wider">READY</span>
               </div>
             </div>
           </div>
@@ -327,12 +329,30 @@ export function ProjectPage() {
               </div>
             )}
 
-            {/* Show Stories if available */}
-            {state?.storiesJSON && (
-              <div className="mt-4">
-                <h3 className="text-sm font-semibold text-gray-300 mb-3">User Stories</h3>
-                <div className="bg-dark-bg border border-gray-800 rounded-lg p-4 max-h-96 overflow-y-auto">
-                  <pre className="text-sm text-gray-300 whitespace-pre-wrap font-mono">{state.storiesJSON}</pre>
+            {/* Show Stories as Cards if available */}
+            {state?.stories && state.stories.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-circuit-line">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1">User Stories</h3>
+                    <p className="text-sm text-gray-400 font-mono">{state.stories.length} stories generated</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <button className="px-3 py-1.5 rounded text-xs font-mono font-semibold bg-command-bg hover:bg-elevated-surface border border-circuit-line text-gray-400 hover:text-white transition-all">
+                      BACKLOG
+                    </button>
+                    <button className="px-3 py-1.5 rounded text-xs font-mono font-semibold bg-command-bg hover:bg-elevated-surface border border-circuit-line text-gray-400 hover:text-white transition-all">
+                      IN PROGRESS
+                    </button>
+                    <button className="px-3 py-1.5 rounded text-xs font-mono font-semibold bg-command-bg hover:bg-elevated-surface border border-circuit-line text-gray-400 hover:text-white transition-all">
+                      DONE
+                    </button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {state.stories.map((story, index) => (
+                    <StoryCard key={story.id} story={story} index={index} />
+                  ))}
                 </div>
               </div>
             )}

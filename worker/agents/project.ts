@@ -29,11 +29,25 @@ const defaultOpencodeConfig = {
   },
 };
 
+export type Story = {
+  id: string;
+  title: string;
+  status: "backlog" | "in-progress" | "done";
+  priority: "critical" | "high" | "medium" | "low";
+  points?: number;
+  sprint?: number;
+  description: string;
+  acceptanceCriteria?: string[];
+  technicalNotes?: string[];
+  dependencies?: string[];
+};
+
 export type ProjectState = {
   displayName?: string;
   skills: Record<string, string>;
   opencodeConfigJson: string;
   storiesJSON?: string;
+  stories?: Story[];
   prd?: string;
 };
 
@@ -123,16 +137,27 @@ export class Project extends Agent<Env, ProjectState> {
     
     const storiesJSON = await this.sandbox.readFile("stories.json");
     const prd = await this.sandbox.readFile("prd.md");
+    
+    // Parse stories from JSON
+    let stories: Story[] = [];
+    try {
+      stories = JSON.parse(storiesJSON.content);
+    } catch (e) {
+      console.error("Failed to parse stories JSON:", e);
+    }
+    
     this.setState({
       ...this.state,
       prd: prd.content,
       storiesJSON: storiesJSON.content,
+      stories,
     });
     
     stream.end({ 
       type: "complete", 
       prd: prd.content, 
-      storiesJSON: storiesJSON.content 
+      storiesJSON: storiesJSON.content,
+      stories,
     });
   }
 
